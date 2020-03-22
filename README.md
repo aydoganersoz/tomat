@@ -1,0 +1,2 @@
+# tomat
+Minimal pomodoro timer
