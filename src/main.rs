@@ -1,3 +1,7 @@
+mod args;
+
 fn main() {
-    println!("Hello, world!");
+    let args = args::parse_args();
+
+    println!("{} {} {}", args.long_break, args.short_break, args.pomodoro);
 }
