@@ -1,11 +1,9 @@
 mod args;
 mod timer;
+mod tomat;
 
 fn main() {
-    let args = args::parse_args();
+    let durations = args::parse_args();
 
-    println!("{} {} {}", args.long_break, args.short_break, args.pomodoro);
-
-    timer::start_timer(args.pomodoro);
-    println!("program terminates");
+    tomat::run_tomat(durations);
 }
