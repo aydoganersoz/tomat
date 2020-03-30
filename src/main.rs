@@ -1,4 +1,5 @@
 mod args;
+mod bar;
 mod timer;
 mod tomat;
 
