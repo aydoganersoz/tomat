@@ -11,3 +11,12 @@ pub fn exit_program() {
   // TODO: implement exit codes
   process::exit(0);
 }
+
+pub fn register_sigint() {
+  ctrlc::set_handler(move || on_sigint()).expect("register sigint failed");
+}
+
+fn on_sigint() {
+  println!("closing tomat...");
+  exit_program();
+}
