@@ -1,5 +1,6 @@
 mod args;
 mod bar;
+mod commands;
 mod storage;
 mod timer;
 mod tomat;
@@ -7,10 +8,27 @@ mod util;
 
 fn main() {
     util::register_sigint();
-    let durations = args::parse_args();
+
+    let args = args::parse_args();
 
     util::create_dir().expect("create directory failed");
     storage::create_db().expect("create database failed");
 
-    tomat::run_tomat(durations);
+    match args {
+        args::Command::Start(x) => {
+            tomat::run_tomat(x);
+        }
+        args::Command::Export(_x) => {
+            println!("Command::Export");
+        }
+        args::Command::Reset(_x) => {
+            println!("Command::Reset");
+        }
+        args::Command::Show() => {
+            commands::stat::show();
+        }
+        args::Command::Undefined() => {
+            println!("Command::Undefined()");
+        }
+    }
 }

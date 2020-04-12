@@ -47,19 +47,19 @@ impl Stats {
     }
 }
 
-pub fn run_tomat(durations: args::Durations) {
+pub fn run_tomat(start_param: args::StartParam) {
     let pomodoro = Session {
-        duration: durations.pomodoro,
+        duration: start_param.duration.pomodoro,
         name: "pomodoro",
         kind: SessionKind::Pomodoro,
     };
     let short_break = Session {
-        duration: durations.short_break,
+        duration: start_param.duration.short_break,
         name: "short break",
         kind: SessionKind::ShortBreak,
     };
     let long_break = Session {
-        duration: durations.long_break,
+        duration: start_param.duration.long_break,
         name: "long break",
         kind: SessionKind::LongBreak,
     };
