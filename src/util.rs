@@ -27,7 +27,7 @@ fn on_sigint() {
 pub fn play_bip() {
   let device = rodio::default_output_device().unwrap();
 
-  let file = File::open("rsc/bip.wav").unwrap();
+  let file = File::open("rsc/A-Tone-His_Self-1266414414.wav").unwrap();
   let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
   rodio::play_raw(&device, source.convert_samples());
 }
