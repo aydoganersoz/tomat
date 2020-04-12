@@ -1,4 +1,7 @@
+use rodio::Source;
 use std::fs;
+use std::fs::File;
+use std::io::BufReader;
 use std::process;
 
 pub fn create_dir() -> std::io::Result<()> {
@@ -19,4 +22,12 @@ pub fn register_sigint() {
 fn on_sigint() {
   println!("closing tomat...");
   exit_program();
+}
+
+pub fn play_bip() {
+  let device = rodio::default_output_device().unwrap();
+
+  let file = File::open("rsc/bip.wav").unwrap();
+  let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+  rodio::play_raw(&device, source.convert_samples());
 }

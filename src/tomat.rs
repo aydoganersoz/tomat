@@ -100,6 +100,7 @@ pub fn run_tomat(durations: args::Durations) {
                     util::exit_program();
                 }
             };
+            util::play_bip();
         }
     }
 }
