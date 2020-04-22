@@ -1,5 +1,6 @@
 mod args;
 mod bar;
+mod commands;
 mod storage;
 mod timer;
 mod tomat;
@@ -22,6 +23,9 @@ fn main() {
         }
         args::Command::Reset(_x) => {
             println!("Command::Reset");
+        }
+        args::Command::Show() => {
+            commands::stat::show();
         }
         args::Command::Undefined() => {
             println!("Command::Undefined()");

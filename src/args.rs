@@ -9,12 +9,14 @@ const APP_START: &str = "start";
 const APP_STAT: &str = "stat";
 const APP_RESET: &str = "reset";
 const APP_EXPORT: &str = "export";
+const APP_SHOW: &str = "show";
 
 const ABOUT_TOMAT: &str = "Minimal pomodoro timer";
 const ABOUT_START: &str = "Starts pomodoro timer";
 const ABOUT_STAT: &str = "Handles statistics";
 const ABOUT_RESET: &str = "Resets statistics";
 const ABOUT_EXPORT: &str = "Exports statistics";
+const ABOUT_SHOW: &str = "Shows statistics";
 
 const NAME_LONG_BREAK: &str = "long break";
 const NAME_SHORT_BREAK: &str = "short break";
@@ -97,6 +99,7 @@ pub enum Command {
     Start(StartParam),
     Export(ExportParam),
     Reset(ResetParam),
+    Show(),
     Undefined(),
 }
 
@@ -106,9 +109,10 @@ pub fn parse_args() -> Command {
         (APP_STAT, Some(stat)) => match stat.subcommand() {
             (APP_EXPORT, Some(export)) => Command::Export(parse_export(export)),
             (APP_RESET, Some(reset)) => Command::Reset(parse_reset(reset)),
-            (&_, _) => Command::Undefined(),
+            (APP_SHOW, Some(_show)) => Command::Show(),
+            (&_, _) => Command::Undefined(), // handled by `ArgRequiredElseHelp`
         },
-        (&_, _) => Command::Undefined(),
+        (&_, _) => Command::Undefined(), // handled by `ArgRequiredElseHelp`
     }
 }
 
@@ -261,6 +265,12 @@ fn get_matches<'a>() -> clap::ArgMatches<'a> {
                                 .help(HELP_CSV)
                                 .takes_value(TAKES_VALUE_CSV),
                         ),
+                )
+                // show subcommand
+                .subcommand(
+                    App::new(APP_SHOW)
+                        .about(ABOUT_SHOW)
+                        .setting(AppSettings::DisableVersion),
                 ),
         )
         .get_matches()
