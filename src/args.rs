@@ -21,24 +21,18 @@ const ABOUT_SHOW: &str = "Shows statistics";
 const NAME_LONG_BREAK: &str = "long break";
 const NAME_SHORT_BREAK: &str = "short break";
 const NAME_POMODORO: &str = "pomodoro";
-const NAME_ALL: &str = "all";
-const NAME_TODAY: &str = "today";
 const NAME_JSON: &str = "json";
 const NAME_CSV: &str = "csv";
 
 const LONG_LONG_BREAK: &str = "long-break";
 const LONG_SHORT_BREAK: &str = "short-break";
 const LONG_POMODORO: &str = "pomodoro";
-const LONG_ALL: &str = "all";
-const LONG_TODAY: &str = "today";
 const LONG_JSON: &str = "json";
 const LONG_CSV: &str = "csv";
 
 const SHORT_LONG_BREAK: &str = "l";
 const SHORT_SHORT_BREAK: &str = "s";
 const SHORT_POMODORO: &str = "p";
-const SHORT_ALL: &str = "a";
-const SHORT_TODAY: &str = "t";
 const SHORT_JSON: &str = "j";
 const SHORT_CSV: &str = "c";
 
@@ -55,8 +49,6 @@ const DEFAULT_VALUE_POMODORO: &str = "25";
 const HELP_LONG_BREAK: &str = "Sets long break duration";
 const HELP_SHORT_BREAK: &str = "Sets short break duration";
 const HELP_POMODORO: &str = "Sets pomodoro duration";
-const HELP_ALL: &str = "Resets all statistics";
-const HELP_TODAY: &str = "Resets today's statistics";
 const HELP_JSON: &str = "Exports statistics to a given output file in JSON format";
 const HELP_CSV: &str = "Exports statistics to a given output file in CSV format";
 
@@ -86,19 +78,10 @@ pub struct ExportParam {
     pub filename: String,
 }
 
-pub enum ResetType {
-    Today,
-    All,
-}
-
-pub struct ResetParam {
-    pub reset_type: ResetType,
-}
-
 pub enum Command {
     Start(StartParam),
     Export(ExportParam),
-    Reset(ResetParam),
+    Reset(),
     Show(),
     Undefined(),
 }
@@ -108,26 +91,11 @@ pub fn parse_args() -> Command {
         (APP_START, Some(start)) => Command::Start(parse_start(start)),
         (APP_STAT, Some(stat)) => match stat.subcommand() {
             (APP_EXPORT, Some(export)) => Command::Export(parse_export(export)),
-            (APP_RESET, Some(reset)) => Command::Reset(parse_reset(reset)),
+            (APP_RESET, Some(_reset)) => Command::Reset(),
             (APP_SHOW, Some(_show)) => Command::Show(),
             (&_, _) => Command::Undefined(), // handled by `ArgRequiredElseHelp`
         },
         (&_, _) => Command::Undefined(), // handled by `ArgRequiredElseHelp`
-    }
-}
-
-fn parse_reset<'a>(reset: &'a clap::ArgMatches) -> ResetParam {
-    // argument is required so `else` case is obvious
-    if reset.is_present(NAME_TODAY) {
-        // today
-        ResetParam {
-            reset_type: ResetType::Today,
-        }
-    } else {
-        // all
-        ResetParam {
-            reset_type: ResetType::All,
-        }
     }
 }
 
@@ -224,22 +192,7 @@ fn get_matches<'a>() -> clap::ArgMatches<'a> {
                 .subcommand(
                     App::new(APP_RESET)
                         .about(ABOUT_RESET)
-                        .setting(AppSettings::ArgRequiredElseHelp)
-                        .setting(AppSettings::DisableVersion)
-                        // all flag
-                        .arg(
-                            Arg::with_name(NAME_ALL)
-                                .short(SHORT_ALL)
-                                .long(LONG_ALL)
-                                .help(HELP_ALL),
-                        )
-                        // today flag
-                        .arg(
-                            Arg::with_name(NAME_TODAY)
-                                .short(SHORT_TODAY)
-                                .long(LONG_TODAY)
-                                .help(HELP_TODAY),
-                        ),
+                        .setting(AppSettings::DisableVersion),
                 )
                 // export subcommand
                 .subcommand(

@@ -21,8 +21,8 @@ fn main() {
         args::Command::Export(_x) => {
             println!("Command::Export");
         }
-        args::Command::Reset(_x) => {
-            println!("Command::Reset");
+        args::Command::Reset() => {
+            commands::stat::reset();
         }
         args::Command::Show() => {
             commands::stat::show();
