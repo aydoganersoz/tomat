@@ -1,9 +1,9 @@
-use rusqlite::NO_PARAMS;
-use rusqlite::{Connection, Result};
+use rusqlite::{Connection, Result, NO_PARAMS};
+use serde_derive::{Deserialize, Serialize};
 
 const DB_PATH: &str = "db/stats.db3";
 
-#[derive(Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Stats {
   pub completed_pomodoro: u32,
   pub completed_short_break: u32,

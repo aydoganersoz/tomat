@@ -18,8 +18,8 @@ fn main() {
         args::Command::Start(x) => {
             tomat::run_tomat(x);
         }
-        args::Command::Export(_x) => {
-            println!("Command::Export");
+        args::Command::Export() => {
+            commands::stat::export();
         }
         args::Command::Reset() => {
             commands::stat::reset();
