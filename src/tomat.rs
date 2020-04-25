@@ -3,6 +3,7 @@ use crate::storage;
 use crate::timer;
 use crate::util;
 use chrono::Local;
+use dialoguer::Confirmation;
 
 #[derive(Copy, Clone)]
 enum SessionKind {
@@ -79,8 +80,23 @@ pub fn run_tomat(start_param: args::StartParam) {
         long_break,
     ];
 
+    let mut first_session = true;
     loop {
         for session in sessions.iter_mut() {
+            if first_session != true {
+                let confirmation_text =
+                    "Do you want to start a new ".to_owned() + session.name + " session?";
+                if Confirmation::new()
+                    .with_text(&confirmation_text)
+                    .interact()
+                    .unwrap()
+                    != true
+                {
+                    util::exit_program();
+                }
+            } else {
+                first_session = false;
+            }
             let now = Local::now().format("%H:%M:%S");
             println!(
                 "{} {} started for {} minutes (completed {}s: {})",
