@@ -6,6 +6,7 @@ use std::process;
 
 pub fn create_dir() -> std::io::Result<()> {
   fs::create_dir_all("db")?;
+  fs::create_dir_all("out")?;
 
   Ok(())
 }
