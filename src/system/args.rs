@@ -1,6 +1,6 @@
 use clap::{App, AppSettings, Arg};
 
-const VERSION: &str = "0.1.0";
+const VERSION: &str = "1.0.0";
 
 const AUTHOR: &str = "Aydogan Ersoz <aydoganersoz@protonmail.com>";
 
