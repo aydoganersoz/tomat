@@ -4,10 +4,8 @@ use crate::{
   system::util,
   types::{SessionKind, Stats},
 };
-use chrono;
 use indicatif::ProgressBar;
 use prettytable::{format, Table};
-use serde_json;
 use std::path::PathBuf;
 use std::sync::mpsc::channel;
 use timer::Timer;
@@ -45,7 +43,7 @@ pub fn new_session_confirmation(session_kind: SessionKind) {
   let result = util::yes_no_confirmation(confirmation_text);
   match result {
     Ok(res) => {
-      if res == false {
+      if !res {
         util::exit_program();
       }
     }
@@ -75,7 +73,7 @@ pub fn play_bip() {
 }
 
 pub fn print_stat_table(records: Vec<Stats>) {
-  if records.len() > 0 {
+  if !records.is_empty() {
     let mut table = Table::new();
     table.set_format(*format::consts::FORMAT_NO_LINESEP_WITH_TITLE);
     table.set_titles(row![
@@ -111,9 +109,9 @@ pub fn export_json(records: Vec<Stats>) {
 }
 
 pub fn wait_timer(minutes: u32) {
-  let bar = ProgressBar::new(minutes as u64);
+  let progress_bar = ProgressBar::new(minutes as u64);
   for _ in 0..minutes {
-    bar.inc(1);
+    progress_bar.inc(1);
     let tmr = Timer::new();
     let (tx, rx) = channel();
     if cfg!(debug_assertions) {

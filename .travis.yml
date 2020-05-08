@@ -1,0 +1,29 @@
+language: rust
+
+sudo: required
+
+rust:
+  - stable
+  - nightly
+
+matrix:
+  allow_failures:
+    - rust: nightly
+
+addons:
+  apt:
+    packages:
+      - libasound2-dev    
+      - portaudio19-dev
+      - libpulse-dev
+      - libdbus-1-dev
+
+cache: cargo
+
+before_script:
+  - rustup component add clippy
+
+script:
+  - cargo clippy --all-targets --all-features -- -D warnings
+  - cargo build --verbose --all
+  - cargo test --verbose --all
