@@ -14,10 +14,10 @@ pub struct Session {
 }
 
 impl Session {
-  pub fn new(duration: u32, kind: SessionKind) -> Session {
+  pub fn new(session_duration: u32, session_kind: SessionKind) -> Session {
     Session {
-      duration: duration,
-      kind: kind,
+      duration: session_duration,
+      kind: session_kind,
     }
   }
 }

@@ -76,7 +76,7 @@ pub fn parse_args() -> Command {
     }
 }
 
-fn parse_start<'a>(start: &clap::ArgMatches) -> StartParam {
+fn parse_start(start: &clap::ArgMatches) -> StartParam {
     StartParam {
         // arguments have default values so calling `is_present` is not crucial
         duration: Duration {
