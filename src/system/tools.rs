@@ -4,10 +4,8 @@ use crate::{
   system::util,
   types::{SessionKind, Stats},
 };
-use chrono;
 use indicatif::ProgressBar;
 use prettytable::{format, Table};
-use serde_json;
 use std::path::PathBuf;
 use std::sync::mpsc::channel;
 use timer::Timer;
