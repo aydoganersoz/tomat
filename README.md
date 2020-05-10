@@ -51,7 +51,7 @@ tomat stat export
 
 Exported files can be found under `$HOME\.tomat\out`. Unix timestamp prefix is used in filenames to generate unique files that can be ordered by creation date.
 
-# Reset statistics
+## Reset statistics
 
 ```
 tomat stat reset
