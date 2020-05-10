@@ -2,42 +2,66 @@
 
 [![Build Status](https://travis-ci.com/aydoganersoz/tomat.svg?branch=master)](https://travis-ci.com/aydoganersoz/tomat)
 
-Minimal pomodoro timer
+_tomat_ is yet another console based [pomodoro timer](https://en.wikipedia.org/wiki/Pomodoro_Technique). It has very limited features and has been created for fun during my Rust learning adventure.
 
-# Introduction
+# Features
 
-_tomat_ is yet another console based pomodoro timer.
+- Pomodoro duration is 25, short break duration is 5 and long break duration is 15 minutes by default
+- First two pomodoro sessions are followed by short breaks and the third one by long break then this pattern repeats (ie: pomodoro -> short break -> pomodoro -> short break -> pomodoro -> long break)
+- A yes/no confirmation dialogue to continue shows up each time when a session terminates to give flexibility to the user
+- A beep sound is played each time when a session terminates to inform the user
+- A session is recorded into the daily statistics only if the session is completed
+- Daily statistics can be shown on the terminal
+- Daily statistics can be exported into a JSON file
+- Daily statistics can be reset
 
-## console flags
+# Installation
 
-pomodoro, short break, long break
+TBD
 
 # Usage
 
-Start pomodoro timer:
+## Start the timer
 
-```bash
+### With default durations
+
+```
 tomat start
 ```
 
-Show statistics:
+### With user-defined durations
 
-```bash
+`start` subcommand can take three optional parameters to modify session durations. For example, following command can be used to modify pomodoro duration to 30 minutes, short break duration to 10 minutes and long break duration to 20 minutes:
+
+```
+tomat start --pomodoro=30 --short-break=10 --long-break=20
+```
+
+## View daily statistics
+
+```
 tomat stat show
 ```
 
-Export statistics:
+## Export daily statistics
 
-```bash
+```
 tomat stat export
 ```
 
-Reset statistics:
+Exported files can be found under `$HOME\.tomat\out`. Unix timestamp prefix is used in filenames to generate unique files that can be ordered by creation date.
 
-```bash
+# Reset statistics
+
+```
 tomat stat reset
 ```
 
+## Quit the timer
+
+There are two methods to quit the timer. Pressing `CTRL^C` at anytime or answering `no` to the confirmation dialogue that shows up after each session.
+
 # Credits
 
+- [Elif Koksal](https://github.com/elifkoksal) for her valuable feedback
 - SoundBible.com for A-Tone-His_Self-1266414414.wav
