@@ -7,10 +7,11 @@ _tomat_ is yet another console based [pomodoro timer](https://en.wikipedia.org/w
 # Features
 
 - Pomodoro duration is 25, short break duration is 5 and long break duration is 15 minutes by default
-- First two pomodoro sessions are followed by short breaks and the third one by long break then this pattern repeats (ie: pomodoro -> short break -> pomodoro -> short break -> pomodoro -> long break)
-- A yes/no confirmation dialogue to continue shows up each time when a session terminates to give flexibility to the user
-- A beep sound is played each time when a session terminates to inform the user
-- A session is recorded into the daily statistics only if the session is completed
+- Session durations can be modified individually or together
+- First two pomodoro sessions are followed by short breaks and the third one by a long break, then this pattern repeats (i.e.: pomodoro -> short break -> pomodoro -> short break -> pomodoro -> long break)
+- A yes/no confirmation dialogue to continue shows up at the end of each session to give flexibility to the user
+- A beep sound is played at the end of each session to inform the user
+- A completed session is recorded in the daily statistics
 - Daily statistics can be shown on the terminal
 - Daily statistics can be exported into a JSON file
 - Daily statistics can be reset
@@ -31,7 +32,7 @@ tomat start
 
 ### With user-defined durations
 
-`start` subcommand can take three optional parameters to modify session durations. For example, following command can be used to modify pomodoro duration to 30 minutes, short break duration to 10 minutes and long break duration to 20 minutes:
+`start` subcommand can take three optional parameters to modify session durations. For example, following command can be used to modify the pomodoro duration to 30 minutes, the short break duration to 10 minutes and the long break duration to 20 minutes:
 
 ```
 tomat start --pomodoro=30 --short-break=10 --long-break=20
@@ -59,7 +60,7 @@ tomat stat reset
 
 ## Quit the timer
 
-There are two methods to quit the timer. Pressing `CTRL^C` at anytime or answering `no` to the confirmation dialogue that shows up after each session.
+There are two methods to quit the timer. Pressing `CTRL^C` at anytime or answering `no` to the confirmation dialogue that shows up at the end of each session.
 
 # Credits
 
