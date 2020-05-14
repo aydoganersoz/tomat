@@ -1,22 +1,18 @@
 language: rust
 
-sudo: required
+os: linux
 
-rust:
-  - stable
-  - nightly
+dist: xenial
 
-matrix:
-  allow_failures:
-    - rust: nightly
+rust: stable
+
+env:
+  - RUST_BACKTRACE=full
 
 addons:
   apt:
     packages:
-      - libasound2-dev    
-      - portaudio19-dev
-      - libpulse-dev
-      - libdbus-1-dev
+      - libasound2-dev
 
 cache: cargo
 

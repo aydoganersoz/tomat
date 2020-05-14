@@ -7,8 +7,6 @@ pub const ERR_CREATE_DATABASE: &str = "failed to create database";
 pub const ERR_INSERT_DATABASE: &str = "failed to insert into database";
 pub const ERR_REGISTER_SIGINT: &str = "failed to register sigint";
 pub const ERR_READ_SOUND_FILE: &str = "failed to read sound file";
-pub const ERR_FIND_DEFAULT_SOUND_DEVICE: &str = "failed to find default sound device";
-pub const ERR_AUTODETECT_SOUND_FORMAT: &str = "failed to autodetect sound format";
 pub const ERR_UNDEFINED_COMMAND: &str = "undefined command";
 
 pub const MSG_NO_STAT_FOUND: &str = "no statistics found to show";
