@@ -1,6 +1,8 @@
 language: rust
 
-os: linux
+os:
+  - linux
+  - osx
 
 dist: xenial
 
