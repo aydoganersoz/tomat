@@ -30,17 +30,12 @@ pub fn play_sound(path: PathBuf) {
   let file = File::open(path);
   match file {
     Ok(file) => {
-      let device = rodio::default_output_device();
-      match device {
-        Some(device) => {
-          let source = rodio::Decoder::new(BufReader::new(file));
-          match source {
-            Ok(source) => rodio::play_raw(&device, source.convert_samples()),
-            Err(_e) => print_terminal(string::ERR_AUTODETECT_SOUND_FORMAT),
-          }
-        }
-        None => print_terminal(string::ERR_FIND_DEFAULT_SOUND_DEVICE),
-      }
+      let h = thread::spawn(move || {
+        let device = rodio::default_output_device().unwrap();
+        let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+        rodio::play_raw(&device, source.convert_samples());
+      });
+      let _result = h.join();
     }
     Err(_e) => print_terminal(string::ERR_READ_SOUND_FILE),
   }

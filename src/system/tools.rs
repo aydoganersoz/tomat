@@ -127,3 +127,13 @@ pub fn wait_timer(minutes: u32) {
     let _ = rx.recv();
   }
 }
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn test_play_bip() {
+    play_bip();
+  }
+}
