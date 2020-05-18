@@ -1,10 +1,9 @@
-mod commands;
-mod system;
-mod types;
+mod lib;
 #[macro_use]
 extern crate prettytable;
 
-use system::{args, string, tools, util};
+use lib::commands;
+use lib::system::{args, string, tools, util};
 
 fn main() {
     util::register_sigint().expect(string::ERR_REGISTER_SIGINT);
