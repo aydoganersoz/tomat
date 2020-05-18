@@ -1,8 +1,8 @@
 use crate::{
-  system::storage,
-  system::string,
-  system::util,
-  types::{SessionKind, Stats},
+  lib::system::storage,
+  lib::system::string,
+  lib::system::util,
+  lib::types::{SessionKind, Stats},
 };
 use indicatif::ProgressBar;
 use prettytable::{format, Table};
