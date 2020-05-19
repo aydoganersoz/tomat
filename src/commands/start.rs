@@ -1,5 +1,5 @@
-use crate::lib::system::{args, string, tools};
-use crate::lib::types::*;
+use crate::system::{args, string, tools};
+use crate::types::*;
 
 pub fn run_tomat(start_param: args::StartParam) {
     let pomodoro = Session::new(start_param.duration.pomodoro, SessionKind::Pomodoro);

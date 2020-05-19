@@ -1,9 +1,8 @@
-mod lib;
-#[macro_use]
 extern crate prettytable;
+extern crate tomat;
 
-use lib::commands;
-use lib::system::{args, string, tools, util};
+use tomat::commands;
+use tomat::system::{args, string, tools, util};
 
 fn main() {
     util::register_sigint().expect(string::ERR_REGISTER_SIGINT);
@@ -11,7 +10,7 @@ fn main() {
     tools::create_directories().expect(string::ERR_CREATE_DIRECTORY);
     tools::create_db().expect(string::ERR_CREATE_DATABASE);
     match args {
-        args::Command::Start(x) => commands::start::run_tomat(x),
+        args::Command::Start(x) => tomat::commands::start::run_tomat(x),
         args::Command::Export() => commands::stat::export(),
         args::Command::Reset() => commands::stat::reset(),
         args::Command::Show() => commands::stat::show(),
