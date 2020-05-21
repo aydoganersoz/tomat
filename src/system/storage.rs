@@ -1,5 +1,5 @@
-use crate::lib::system::tools;
-use crate::lib::types::Stats;
+use crate::system::tools;
+use crate::types::Stats;
 use rusqlite::{Connection, Result, NO_PARAMS};
 
 pub fn create_db() -> Result<()> {

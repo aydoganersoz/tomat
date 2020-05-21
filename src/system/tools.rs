@@ -1,11 +1,11 @@
 use crate::{
-  lib::system::storage,
-  lib::system::string,
-  lib::system::util,
-  lib::types::{SessionKind, Stats},
+  system::storage,
+  system::string,
+  system::util,
+  types::{SessionKind, Stats},
 };
 use indicatif::ProgressBar;
-use prettytable::{format, Table};
+use prettytable::{cell, format, row, Table};
 use std::path::PathBuf;
 use std::sync::mpsc::channel;
 use timer::Timer;
@@ -148,32 +148,6 @@ mod tests {
   }
 
   #[test]
-  fn test_export_json() {
-    create_directories().unwrap();
-    let mut records = Vec::<Stats>::new();
-    records.push(Stats {
-      completed_pomodoro: 1,
-      completed_short_break: 1,
-      completed_long_break: 1,
-      date: String::from("2020-04-24"),
-    });
-    export_json(records);
-  }
-
-  #[test]
-  fn test_print_stat_table() {
-    create_directories().unwrap();
-    let mut records = Vec::<Stats>::new();
-    records.push(Stats {
-      completed_pomodoro: 1,
-      completed_short_break: 1,
-      completed_long_break: 1,
-      date: String::from("2020-04-24"),
-    });
-    print_stat_table(records);
-  }
-
-  #[test]
   fn test_get_db_path() {
     let db_path = get_db_path();
     assert_eq!(db_path.to_str().unwrap(), "db/stats.db3");
@@ -182,14 +156,6 @@ mod tests {
   #[test]
   fn test_create_db() {
     let result = create_db();
-    assert_eq!(result, Ok(()));
-  }
-
-  #[test]
-  fn test_insert_db() {
-    let result = create_db();
-    assert_eq!(result, Ok(()));
-    let result = insert_db(SessionKind::Pomodoro);
     assert_eq!(result, Ok(()));
   }
 }
