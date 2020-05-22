@@ -15,6 +15,23 @@ pub fn create_db() -> Result<()> {
   Ok(())
 }
 
+/// Inserts a session into database
+///
+/// Function takes a parameter of type `u8` for the moment. In the future
+/// version, it will be of type `SessionKind` to avoid ambiguity.
+///
+/// It is necessary to have an already created database to call this file.
+/// Otherwise it won't return `Ok`.
+///
+/// ```
+/// extern crate tomat;
+///
+/// use tomat::system::storage;
+/// use tomat::types;
+///
+/// let result = storage::insert_db(types::SessionKind::Pomodoro as u8);
+/// assert_eq!(result, Ok(()));
+/// ```
 pub fn insert_db(session_kind: u8) -> Result<()> {
   let conn = Connection::open(tools::get_db_path())?;
   conn.execute(
