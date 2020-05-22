@@ -12,3 +12,6 @@ Cargo.lock
 # User related database folder
 /db/
 /out/
+
+# Tarball
+tomat.tar.gz
