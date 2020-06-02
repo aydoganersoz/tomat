@@ -18,7 +18,25 @@ _tomat_ is yet another console based [pomodoro timer](https://en.wikipedia.org/w
 
 # Installation
 
-TBD
+## On Linux
+
+Download the installation script:
+
+```bash
+curl -L -o tomat_install.sh https://raw.githubusercontent.com/aydoganersoz/tomat/master/install.sh
+```
+
+Give execution permission to the script:
+
+```bash
+chmod +x ./tomat_install.sh
+```
+
+Install _tomat_
+
+```bash
+./tomat_install.sh
+```
 
 # Usage
 

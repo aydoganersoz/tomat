@@ -11,10 +11,6 @@ REMOTE_LINUX_TARBALL="https://github.com/aydoganersoz/tomat/releases/download/$T
 
 echo "Setting up tomat..."
 if [[ "$OSTYPE" == darwin* ]] ; then {
-    curl -L -o tomat "$OSX_TARBALL" && \
-    [[ $(md5 -r tomat) == "$OSX_MD5" ]] && \
-    chmod +x tomat && \
-    ./tomat -v
 } elif [[ "$OSTYPE" == linux* ]] ; then {
     curl -L -o $DOWNLOADED_TARBALL $REMOTE_LINUX_TARBALL && \
     echo $LINUX_MD5 $DOWNLOADED_TARBALL | md5sum -c - && \
