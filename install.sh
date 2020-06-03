@@ -11,6 +11,8 @@ REMOTE_LINUX_TARBALL="https://github.com/aydoganersoz/tomat/releases/download/$T
 
 echo "Setting up tomat..."
 if [[ "$OSTYPE" == darwin* ]] ; then {
+    echo "OS is not yet compatible"
+    exit -1
 } elif [[ "$OSTYPE" == linux* ]] ; then {
     curl -L -o $DOWNLOADED_TARBALL $REMOTE_LINUX_TARBALL && \
     echo $LINUX_MD5 $DOWNLOADED_TARBALL | md5sum -c - && \
