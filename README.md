@@ -18,7 +18,7 @@ _tomat_ is yet another console based [pomodoro timer](https://en.wikipedia.org/w
 
 # Installation
 
-## On Linux
+## On Linux & OSX
 
 Download the installation script:
 
